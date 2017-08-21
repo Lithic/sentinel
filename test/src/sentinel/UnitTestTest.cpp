@@ -1,4 +1,4 @@
 #include "sentinel/UnitTestTest.h"
 
-using namespace sentinel;
+using namespace lithic::sentinel;
 using namespace std;

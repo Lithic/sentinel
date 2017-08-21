@@ -1,20 +1,30 @@
 #pragma once
 
-#include <functional>
-#include <vector>
+#include <map>
+#include <string>
 #include "Expect.h"
-#include "TestController.h"
 
-namespace sentinel {
-	class UnitTest : public TestController {
-	private:
-		Expect* expect = NULL;
-	public:
-		std::string name;
+namespace lithic {
+	namespace sentinel {
+		class UnitTest {
+		private:
+			std::function<void()> _beforeAllFunction = NULL;
+			std::function<void()> _beforeEachFunction = NULL;
+			std::function<void()> _afterAllFunction = NULL;
+			std::function<void()> _afterEachFunction = NULL;
+			std::map<std::string, std::function<void()>> _testFunctions;
+		protected:
+			lithic::sentinel::Expect* expect = NULL;
+		public:
+			std::string name;
 
-		UnitTest();
-		void beforeAll(std::function<void()> beforeAllFunction);
-		void beforeEach(std::function<void()> beforeEachFunction);
-		void test(std::string name, std::function<void()> testFunction);
-	};
+			UnitTest();
+			void beforeAll(std::function<void()> beforeAllFunction);
+			void beforeEach(std::function<void()> beforeEachFunction);
+			void afterAll(std::function<void()> afterAllFunction);
+			void afterEach(std::function<void()> afterEachFunction);
+			void test(std::string name, std::function<void()> testFunction);
+			int run();
+		};
+	}
 }

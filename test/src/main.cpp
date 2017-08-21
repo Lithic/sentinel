@@ -1,8 +1,10 @@
+#include "sentinel/TestRunner.h"
 #include "sentinel/ExpectTest.h"
 
-int main() {
-	Sentinel* sentinel = new Sentinel();
-	sentinel->add(new ExpectTest());
+using namespace lithic::sentinel;
 
-	return sentinel->runTests();
+int main() {
+	TestRunner* testRunner = new TestRunner();
+	testRunner->add(new ExpectTest());
+	return testRunner->run();
 }
