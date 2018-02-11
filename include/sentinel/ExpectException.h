@@ -2,10 +2,16 @@
 
 namespace lithic {
     namespace sentinel {
-        class ExpectException {
+        class ExpectException : public std::exception {
+        private:
+        	std::string _message;
         public:
-            std::string message;
-            ExpectException(std::string s) : message(s) {};
+            ExpectException(std::string s) : std::exception() {
+            	_message = s;
+            };
+            virtual const char* what() const noexcept {
+            	return _message.c_str();
+            }
         };
     }
 }

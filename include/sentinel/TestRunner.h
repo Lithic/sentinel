@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include "UnitTest.h"
 
@@ -9,7 +10,7 @@ namespace lithic {
             std::vector<UnitTest*> _tests;
         public:
             void add(UnitTest* test);
-            int run();
+            bool run();
         };
     }
 }

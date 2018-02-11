@@ -3,6 +3,8 @@
 #include <functional>
 #include "ExpectException.h"
 
+#include <iostream>
+
 namespace lithic {
 	namespace sentinel {
 		class Expect {
@@ -23,6 +25,34 @@ namespace lithic {
 				}
 			}
 
+			template <class T>
+			void toBeLessThan(T a, T b) {
+				if (a >= b) {
+					throw ExpectException("Expected: " + std::to_string(a) + " to be less than: " + std::to_string(b));
+				}
+			}
+
+			template <class T>
+			void toBeLessThanOrEqualTo(T a, T b) {
+				if (a > b) {
+					throw ExpectException("Expected: " + std::to_string(a) + " to be less than or equal to: " + std::to_string(b));
+				}
+			}
+
+			template <class T>
+			void toBeGreaterThan(T a, T b) {
+				if (a <= b) {
+					throw ExpectException("Expected: " + std::to_string(a) + " to be greater than: " + std::to_string(b));
+				}
+			}
+
+			template <class T>
+			void toBeGreaterThanOrEqualTo(T a, T b) {
+				if (a < b) {
+					throw ExpectException("Expected: " + std::to_string(a) + " to be greater than or equal to: " + std::to_string(b));
+				}
+			}
+
 			void toBeTrue(bool x) {
 				if (!x) {
 					throw ExpectException("Expected: " + std::string(x ? "true" : "false") + " to be true");
@@ -36,15 +66,25 @@ namespace lithic {
 			}
 
 			void toThrowException(std::function<void()> f) {
-				bool threw = false;
 				try {
 					f();
 				}
 				catch (...) {
-					threw = true;
+					return;
 				}
-				if (!threw) {
-					throw ExpectException("Expected function to throw exception");
+				throw ExpectException("Expected function to throw exception");
+			}
+
+			void notToThrowException(std::function<void()> f) {
+				try {
+					f();
+				}
+				catch (const std::exception& e) {
+					std::cout << "throwing" << std::endl;
+					throw ExpectException("Expected function not to throw exception: " + std::string(e.what()));
+				}
+				catch (...) {
+					std::cout << "catchall?" << std::endl;
 				}
 			}
 		};

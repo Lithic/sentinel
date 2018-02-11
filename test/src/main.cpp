@@ -6,5 +6,5 @@ using namespace lithic::sentinel;
 int main() {
 	TestRunner* testRunner = new TestRunner();
 	testRunner->add(new ExpectTest());
-	return testRunner->run();
+	return testRunner->run() ? 0 : 1;
 }

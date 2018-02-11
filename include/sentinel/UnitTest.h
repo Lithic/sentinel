@@ -24,7 +24,10 @@ namespace lithic {
 			void afterAll(std::function<void()> afterAllFunction);
 			void afterEach(std::function<void()> afterEachFunction);
 			void test(std::string name, std::function<void()> testFunction);
-			int run();
+			void printName(std::string name);
+			void printPassed();
+			void printFailed(std::string explanation);
+			bool run();
 		};
 	}
 }
