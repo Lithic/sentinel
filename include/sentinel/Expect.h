@@ -81,7 +81,7 @@ namespace lithic {
 			template <class T>
 			void notToBeNull(T a) {
 				size_t addr = (size_t)a;
-				if (a == NULL) {
+				if (a == 0) {
 					throw ExpectException("Expected: " + toString(addr) + " not to be NULL");
 				}
 			}
