@@ -1,4 +1,3 @@
-#include "sentinel/Instrumentation.h"
 #include "sentinel/TestRunner.h"
 #include "sentinel/ExpectTest.h"
 
