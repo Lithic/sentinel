@@ -1,7 +1,5 @@
 #pragma once
 
-#include "sentinel/Instrumentation.h"
-
 #include <functional>
 #include "ExpectException.h"
 
