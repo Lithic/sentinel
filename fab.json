@@ -1,0 +1,30 @@
+{
+	"lib": [{
+		"name": "sentinel",
+		"sources": [{
+			"dir": "src",
+			"recursive": true
+		}],
+		"include": [
+			"include"
+		],
+		"export": {
+			"include": [
+				"include"
+			]
+		}
+	}],
+	"bin": [{
+		"name": "sentinel-test",
+		"sources": [{
+			"dir": "test/src",
+			"recursive": true
+		}],
+		"include": [
+			"test/include"
+		],
+		"depends": [
+			"sentinel"
+		]
+	}]
+}
