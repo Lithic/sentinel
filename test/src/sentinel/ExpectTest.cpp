@@ -8,9 +8,11 @@ ExpectTest::ExpectTest() : UnitTest() {
 	test("toEqual", [=]() {
 		expect->notToThrowException([=]() {
 			expect->toEqual(true, true);
+			expect->toEqual("one", "one");
 		});
 		expect->toThrowException([=]() {
 			expect->toEqual(true, false);
+			expect->toEqual("one", "two");
 		});
 	});
 
@@ -28,7 +30,7 @@ ExpectTest::ExpectTest() : UnitTest() {
 			expect->toBeLessThan(3, 4);
 		});
 		expect->toThrowException([=]() {
-			expect->toBeLessThan(5, 4);
+			expect->toBeLessThan(5, 5);
 		});
 	});
 }

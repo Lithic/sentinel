@@ -1,27 +1,34 @@
 #pragma once
 
+#include "sentinel/Instrumentation.h"
+
 #include <functional>
 #include "ExpectException.h"
-
-#include <iostream>
 
 namespace lithic {
 	namespace sentinel {
 		class Expect {
-		public:
-			Expect() {}
+		private:
+			template <class T>
+			std::string toString(T a) {
+				return std::to_string(a);
+			}
 
+			std::string toString(const char* a) {
+				return std::string(a);
+			}
+		public:
 			template <class T>
 			void toEqual(T a, T b) {
 				if (a != b) {
-					throw ExpectException("Expected: " + std::to_string(a) + " to equal: " + std::to_string(b));
+					throw ExpectException("Expected: " + toString(a) + " to equal: " + toString(b));
 				}
 			}
 
 			template <class T>
 			void notToEqual(T a, T b) {
 				if (a == b) {
-					throw ExpectException("Expected: " + std::to_string(a) + " not to equal: " + std::to_string(b));
+					throw ExpectException("Expected: " + toString(a) + " not to equal: " + toString(b));
 				}
 			}
 
@@ -80,11 +87,7 @@ namespace lithic {
 					f();
 				}
 				catch (const std::exception& e) {
-					std::cout << "throwing" << std::endl;
 					throw ExpectException("Expected function not to throw exception: " + std::string(e.what()));
-				}
-				catch (...) {
-					std::cout << "catchall?" << std::endl;
 				}
 			}
 		};
