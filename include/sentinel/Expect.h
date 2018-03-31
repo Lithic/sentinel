@@ -15,6 +15,10 @@ namespace lithic {
 			std::string toString(const char* a) {
 				return std::string(a);
 			}
+
+			std::string toString(std::string a) {
+				return a;
+			}
 		public:
 			template <class T>
 			void toEqual(T a, T b) {
