@@ -70,6 +70,20 @@ namespace lithic {
 				}
 			}
 
+			template <class T>
+			void toBeNull(T a) {
+				if (a != NULL) {
+					throw ExpectException("Expected: " + toString(a) + " to be NULL");
+				}
+			}
+
+			template <class T>
+			void notToBeNull(T a) {
+				if (a == NULL) {
+					throw ExpectException("Expected: " + toString(a) + " not to be NULL");
+				}
+			}
+
 			void toThrowException(std::function<void()> f) {
 				try {
 					f();
