@@ -12,7 +12,10 @@
 			"include": [
 				"include"
 			]
-		}
+		},
+		"depends": [
+			"gloss"
+		]
 	}],
 	"bin": [{
 		"name": "sentinel-test",
@@ -26,5 +29,8 @@
 		"depends": [
 			"sentinel"
 		]
+	}],
+	"external": [{
+		"git": "https://github.com/lasalvavida/gloss.git"
 	}]
 }

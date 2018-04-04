@@ -1,8 +1,10 @@
 #include "sentinel/UnitTest.h"
 #include <iostream>
+#include <gloss/gloss.h>
 
 using namespace lithic::sentinel;
 using namespace std;
+using namespace gloss;
 
 UnitTest::UnitTest() {
 	expect = new Expect();
@@ -34,11 +36,11 @@ void UnitTest::printName(string testName) {
 }
 
 void UnitTest::printPassed() {
-	cout << "SUCCESS" << endl;
+	cout << Gloss("SUCCESS").green().string() << endl;
 }
 
 void UnitTest::printFailed(string explanation) {
-	cout << "FAILURE: " << explanation << endl;
+	cout << Gloss("FAILURE: ").red().string() << explanation << endl;
 }
 
 bool UnitTest::run() {
