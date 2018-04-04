@@ -36,11 +36,11 @@ void UnitTest::printName(string testName) {
 }
 
 void UnitTest::printPassed() {
-	cout << Gloss("SUCCESS").green().string() << endl;
+	cout << green("SUCCESS") << endl;
 }
 
 void UnitTest::printFailed(string explanation) {
-	cout << Gloss("FAILURE: ").red().string() << explanation << endl;
+	cout << red("FAILURE: ") << explanation << endl;
 }
 
 bool UnitTest::run() {
